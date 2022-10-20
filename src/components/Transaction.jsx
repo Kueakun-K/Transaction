@@ -1,19 +1,17 @@
 import React from 'react';
-import {View, Text, Image, TouchableWithoutFeedback} from 'react-native';
+import {View, Text, Image, ScrollView, Pressable} from 'react-native';
 import {Link, Outlet} from 'react-router-native';
-// import axios from 'axios';
-// import DropDownPicker from 'react-native-dropdown-picker';
+import axios from 'axios';
+import DropDownPicker from 'react-native-dropdown-picker';
 // import {Picker} from '@react-native-picker/picker';
 import logo from '../assets/images/logo.png';
 const Transaction = () => {
   const [active, setActive] = React.useState(true);
 
-  
-
   return (
-    <View className=" min-h-full bg-base">
+    <View className=" min-h-full h-max bg-base">
       {/* Green Area */}
-      <View className="flex bg-green-kem  rounded-b-2xl">
+      <View className="flex bg-green-sod  rounded-b-2xl">
         {/* Header */}
         <View className=" items-center">
           <Text className="font-noto text-white text-3xl mt-3">
@@ -66,11 +64,13 @@ const Transaction = () => {
         <View className="relative z-10">
           <View className="flex flex-row m-3 border-b-[0.5px]">
             <View className="w-1/2">
-              <Link to="/transaction/activity" onPress={() => setActive(true)}>
+              <Link
+                to="/transaction/activity"
+                onPress={() => setActive(true)}>
                 <View className=" h-6 items-center justify-start">
                   <Text
                     className={
-                      (active ? 'border-b-4 border-pinkonn' : 'border-0') +
+                      (active ? 'border-b-4 border-red-onn' : 'border-0') +
                       ' font-notoMedium text-black'
                     }>
                     Activity
@@ -83,7 +83,7 @@ const Transaction = () => {
                 <View className=" h-6 items-center justify-start">
                   <Text
                     className={
-                      (active ? 'border-0' : 'border-b-4 border-pinkonn') +
+                      (active ? 'border-0' : 'border-b-4 border-red-onn') +
                       ' font-notoMedium text-black'
                     }>
                     Request Statement
@@ -96,11 +96,15 @@ const Transaction = () => {
       </View>
       {/* Nav */}
 
-      {/* Child Route */}
-      
+      {/* Child 1 Route */}
+      {/* <View  className="flex-1"> */}
       <Outlet />
+      {/* </View> */}
+      {/* Child 1 Route */}
+
+      {/* child 2 Route */}
       
-      {/* Child Route */}
+      {/* child 2 Route */}
     </View>
   );
 };

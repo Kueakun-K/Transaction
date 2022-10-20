@@ -5,8 +5,9 @@ module.exports = {
     extend: {
       colors: {
         'green-kem': '#76978E',
+        'green-sod' : '#387766',
         'tao': '#E1D8D8',
-        'pinkonn': '#D3AD9F',
+        'red-onn': '#FD6565',
         'base' : '#F1EEE6',
         'yellowonn' : '#F6D8A9',
       },
