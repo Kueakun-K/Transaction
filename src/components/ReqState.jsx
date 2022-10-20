@@ -1,12 +1,14 @@
-import React from 'react'
+import React from 'react';
 import {View, Text} from 'react-native';
 
 const ReqState = () => {
   return (
     <View>
-        <Text>Test req</Text>
+      <View className="mx-3">
+        <Text className="font-notobold text-black">Select Month(s)</Text>
+      </View>
     </View>
-  )
-}
+  );
+};
 
-export default ReqState
+export default ReqState;

@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Image} from 'react-native';
+import {View, Text, Image, TouchableWithoutFeedback} from 'react-native';
 import {Link, Outlet} from 'react-router-native';
 // import axios from 'axios';
 // import DropDownPicker from 'react-native-dropdown-picker';
@@ -96,9 +96,11 @@ const Transaction = () => {
       </View>
       {/* Nav */}
 
-      {/* Nested Route */}
+      {/* Child Route */}
+      <View>
       <Outlet />
-      {/* Nested Route */}
+      </View>
+      {/* Child Route */}
     </View>
   );
 };
