@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Pressable} from 'react-native';
+import {View, Text, Pressable, ScrollView} from 'react-native';
 import {Link} from 'react-router-native';
 import axios from 'axios';
 import DropDownPicker from 'react-native-dropdown-picker';
@@ -49,11 +49,8 @@ const Activity = () => {
     });
   };
 
-  //   const openTransaction = () => {
-  //     setTest(!test);
-  //   };
   return (
-    <View>
+    <View >
       {/* Transaction */}
 
       {/* month select */}
@@ -113,11 +110,41 @@ const Activity = () => {
       {/* กรอบ Payment */}
       <Pressable
         onPressOut={() => setTest(!test)}
-        className="bg-tao mx-3 mb-1 rounded ">
+        className="bg-tao mx-3 mb-2 rounded shadow-lg shadow-black">
         <View
           className={
             (test ? 'border-b border-gray-500' : '') +
-            ' mx-3 flex-row  pb-1 mb-1'
+            ' mx-3 flex-row  pb-1 mb-1 '
+          }>
+          <View className="w-1/2 ">
+            <Text className="font-noto text-black">Payment</Text>
+            <Text className="font-noto text-black">6:25 PM</Text>
+          </View>
+          <View className="w-1/2 items-end ">
+            <Text className="font-noto text-red-600">- 70.00 Bath</Text>
+            <Text>?</Text>
+          </View>
+        </View>
+        <View className={test ? 'mx-3 flex-row mb-1' : 'hidden'}>
+          <View className="w-1/2">
+            <Text className="font-noto text-xs">FourQU</Text>
+            <Text className="font-noto text-xs">To Acc No. :</Text>
+            <Text className="font-noto text-xs">To Acc Name. :</Text>
+          </View>
+          <View className="w-1/2 items-end">
+            <Text className="font-noto text-xs"></Text>
+            <Text className="font-noto text-xs">xxx-x-x1301-x</Text>
+            <Text className="font-noto text-xs">Watcharapol</Text>
+          </View>
+        </View>
+      </Pressable>
+      <Pressable
+        onPressOut={() => setTest(!test)}
+        className="bg-tao mx-3 mb-2 rounded shadow-lg shadow-black">
+        <View
+          className={
+            (test ? 'border-b border-gray-500' : '') +
+            ' mx-3 flex-row  pb-1 mb-1 '
           }>
           <View className="w-1/2 ">
             <Text className="font-noto text-black">Payment</Text>
@@ -143,6 +170,8 @@ const Activity = () => {
       </Pressable>
       {/* Transaction */}
       <Text className={classtran}>test = {test ? 'true' : 'false'}</Text>
+
+      
     </View>
   );
 };

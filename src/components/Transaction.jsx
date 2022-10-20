@@ -97,9 +97,9 @@ const Transaction = () => {
       {/* Nav */}
 
       {/* Child Route */}
-      <View>
+      
       <Outlet />
-      </View>
+      
       {/* Child Route */}
     </View>
   );
