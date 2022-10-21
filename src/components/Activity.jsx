@@ -48,6 +48,7 @@ const Activity = () => {
   ]);
 
   const [transaction, setTransaction] = React.useState([]);
+  const [tranPress, setTranPress] = React.useState([]);
   const [test, setTest] = React.useState(false);
   React.useEffect(() => {
     fetchTransaction();
@@ -55,15 +56,30 @@ const Activity = () => {
   const fetchTransaction = () => {
     axios.get('https://jsonplaceholder.typicode.com/users').then(res => {
       setTransaction(res.data);
+      setTranPress(transaction.map(maptran));
     });
   };
 
+  const maptran = tran => {
+    return {
+      id: tran.id,
+      user: tran.username,
+      press: false,
+    };
+  };
+
+  // const presstran = index => e => {
+  //   let newArr = [...tranPress];
+  //   newArr[index] = e.target.value;
+  // };
   return (
     <View className="flex-1">
       {/* month select */}
       <View className="flex flex-row mx-3">
         <View className="w-1/2 relative z-30">
-          <Text className="font-notobold text-black">Period</Text>
+          <Text className="font-notobold text-black">
+            Period{tranPress.length}
+          </Text>
           {/* <Picker
               selectedValue={selectedLanguage}
               onValueChange={(itemValue, itemIndex) =>
@@ -82,7 +98,7 @@ const Activity = () => {
           />
         </View>
         <View className="w-1/2 px-4 mt-4 justify-end">
-          <Link onPress={() => setIsClick({id: '12', click: true})} to="#">
+          <Link to="#">
             <View className="flex rounded-2xl bg-green-kem items-center justify-center py-[12px]">
               <Text className=" font-notoMedium text-white ">
                 Account Summary
@@ -102,25 +118,29 @@ const Activity = () => {
           {/* วันที่ */}
 
           {/* กรอบ Transaction */}
-          {transaction.map((tran, index) => (
+          {tranPress.map((tran, index) => (
             <Pressable
-              onPressOut={() => setTest(!test)}
+              key={index}
+              onPressOut={(e) => {
+                tran.press = !tran.press;
+                setTranPress([...tranPress]);
+              }}
               className="bg-tao mx-3 mb-2 rounded shadow-lg shadow-black">
               <View
                 className={
-                  (test ? 'border-b border-gray-500' : '') +
+                  (tran.press ? 'border-b border-gray-500' : '') +
                   ' mx-3 flex-row  pb-1 mb-1 '
                 }>
                 <View className="w-1/2 ">
-                  <Text className="font-noto text-black">{tran.id}</Text>
-                  <Text className="font-noto text-black">6:25 PM</Text>
+                  <Text className="font-noto text-black">{tran.user}</Text>
+                  <Text className="font-noto text-black">{index} PM</Text>
                 </View>
                 <View className="w-1/2 items-end ">
                   <Text className="font-noto text-red-600">- 70.00 Bath</Text>
                   <Text>?</Text>
                 </View>
               </View>
-              <View className={test ? 'mx-3 flex-row mb-1' : 'hidden'}>
+              <View className={tran.press ? 'mx-3 flex-row mb-1' : 'hidden'}>
                 <View className="w-1/2">
                   <Text className="font-noto text-xs">FourQU</Text>
                   <Text className="font-noto text-xs">To Acc No. :</Text>
