@@ -19,6 +19,7 @@ const Activity = () => {
     'November',
     'December',
   ];
+
   const d = new Date();
   const year = d.getFullYear().toString().substr(-2);
   const [open, setOpen] = React.useState(false);
@@ -48,37 +49,30 @@ const Activity = () => {
   ]);
 
   const [transaction, setTransaction] = React.useState([]);
-  const [tranPress, setTranPress] = React.useState([]);
-  const [test, setTest] = React.useState(false);
+
   React.useEffect(() => {
     fetchTransaction();
   }, []);
+
   const fetchTransaction = () => {
     axios.get('https://jsonplaceholder.typicode.com/users').then(res => {
-      setTransaction(res.data);
-      setTranPress(transaction.map(maptran));
+      setTransaction(
+        res.data.map(tran => ({
+          id: tran.id,
+          user: tran.username,
+          press: false,
+        })),
+      );
     });
   };
 
-  const maptran = tran => {
-    return {
-      id: tran.id,
-      user: tran.username,
-      press: false,
-    };
-  };
-
-  // const presstran = index => e => {
-  //   let newArr = [...tranPress];
-  //   newArr[index] = e.target.value;
-  // };
   return (
     <View className="flex-1">
       {/* month select */}
       <View className="flex flex-row mx-3">
         <View className="w-1/2 relative z-30">
           <Text className="font-notobold text-black">
-            Period{tranPress.length}
+            Period{transaction.length}
           </Text>
           {/* <Picker
               selectedValue={selectedLanguage}
@@ -118,12 +112,12 @@ const Activity = () => {
           {/* วันที่ */}
 
           {/* กรอบ Transaction */}
-          {tranPress.map((tran, index) => (
+          {transaction.map((tran, index) => (
             <Pressable
               key={index}
-              onPressOut={(e) => {
+              onPressOut={e => {
                 tran.press = !tran.press;
-                setTranPress([...tranPress]);
+                setTransaction([...transaction]);
               }}
               className="bg-tao mx-3 mb-2 rounded shadow-lg shadow-black">
               <View
