@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, Pressable, ScrollView} from 'react-native';
 import {Link, Outlet} from 'react-router-native';
+import { ChevronDownIcon, ChevronUpIcon } from "react-native-heroicons/outline";
 import axios from 'axios';
 import DropDownPicker from 'react-native-dropdown-picker';
 // import {Picker} from '@react-native-picker/picker';
@@ -69,10 +70,11 @@ const Activity = () => {
   return (
     <View className="flex-1">
       {/* month select */}
-      <View className="flex flex-row mx-3">
+      <View className="flex flex-row px-5">
         <View className="w-1/2 relative z-30">
           <Text className="font-notobold text-black">
-            Period{transaction.length}
+            Period 
+            {/* {transaction.length} */}
           </Text>
           {/* <Picker
               selectedValue={selectedLanguage}
@@ -91,9 +93,9 @@ const Activity = () => {
             setItems={setItems}
           />
         </View>
-        <View className="w-1/2 px-4 mt-4 justify-end">
+        <View className="w-1/2 pl-4 mt-4 justify-end">
           <Link to="#">
-            <View className="flex rounded-2xl bg-green-kem items-center justify-center py-[12px]">
+            <View className="flex rounded-xl bg-green-kem items-center justify-center py-[12px] shadow shadow-black">
               <Text className=" font-notoMedium text-white ">
                 Account Summary
               </Text>
@@ -103,11 +105,11 @@ const Activity = () => {
       </View>
 
       {/* Transaction */}
-      <View className="flex-1">
+      <View className="flex-1 ">
         <ScrollView>
           {/* วันที่ */}
-          <View className=" mx-3 my-2">
-            <Text className="font-notobold text-black">16 OCT 22</Text>
+          <View className="px-5 my-2">
+            <Text className="font-notobold text-black text-base">16 OCT 22</Text>
           </View>
           {/* วันที่ */}
 
@@ -119,19 +121,21 @@ const Activity = () => {
                 tran.press = !tran.press;
                 setTransaction([...transaction]);
               }}
-              className="bg-tao mx-3 mb-2 rounded shadow-lg shadow-black">
+              className="bg-tao mb-2 mx-5 rounded shadow shadow-black">
               <View
                 className={
                   (tran.press ? 'border-b border-gray-500' : '') +
-                  ' mx-3 flex-row  pb-1 mb-1 '
+                  ' mx-2 flex-row  mb-1 '
                 }>
                 <View className="w-1/2 ">
-                  <Text className="font-noto text-black">{tran.user}</Text>
-                  <Text className="font-noto text-black">{index} PM</Text>
+                  <Text className="font-noto text-black text-base">{tran.user}</Text>
+                  <Text className="font-noto text-black text-sm">{index} PM</Text>
                 </View>
                 <View className="w-1/2 items-end ">
                   <Text className="font-noto text-red-600">- 70.00 Bath</Text>
-                  <Text>?</Text>
+                  <View>
+                  {tran.press ? <ChevronUpIcon color="black" size={24}/> : <ChevronDownIcon color="black" size={24}/>}
+                  </View>
                 </View>
               </View>
               <View className={tran.press ? 'mx-3 flex-row mb-1' : 'hidden'}>
