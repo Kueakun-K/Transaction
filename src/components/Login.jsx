@@ -1,11 +1,18 @@
 import React from 'react';
-import {View, Text, TextInput, Image, Alert, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  Image,
+  Alert,
+  TouchableOpacity,
+} from 'react-native';
+import {Link} from 'react-router-native';
 
 import {Formik} from 'formik';
-import * as yup from 'yup'
+import * as yup from 'yup';
 import logo from '../assets/images/logo.png';
 const Login = () => {
-
   return (
     <Formik
       initialValues={{
@@ -14,15 +21,8 @@ const Login = () => {
       }}
       onSubmit={values => Alert.alert(JSON.stringify(values))}
       validationSchema={yup.object().shape({
-        phone: yup
-          .number()
-          .positive()
-          .integer()
-          .required(),
-        email: yup
-          .string()
-          .email()
-          .required(),
+        phone: yup.number().positive().integer().required(),
+        email: yup.string().email().required(),
       })}>
       {({
         values,
@@ -35,38 +35,44 @@ const Login = () => {
       }) => (
         <View className="min-h-full bg-base">
           <View className="bg-green-sod rounded-b-2xl h-[85%] shadow shadow-black">
-            <View className="h-1/2"><View className="items-center">
-              <Image source={logo} className="w-28 h-28" />
-            </View></View>
-            
-          <View className=" h-1/2 justify-center">
-            <View className="mx-7 justify-center">
-              <Text className="font-notobold text-white mb-2">Phone</Text>
-              <TextInput
-                onChangeText={handleChange('phone')}
-                onBlur={() => setFieldTouched('phone')}
-                value={values.phone}
-                className=" bg-white rounded h-8 px-1 py-0 font-noto"
-              />
-              {touched.phone && errors.phone && (
-                <Text style={{fontSize: 12, color: '#FF0D10'}}>
-                  {errors.phone}
-                </Text>
-              )}
-
-              <Text className="font-notobold text-white mb-2 mt-2">Email</Text>
-              <TextInput
-                onChangeText={handleChange('email')}
-                onBlur={() => setFieldTouched('email')}
-                value={values.email}
-                className=" bg-white rounded h-8 px-1 py-0 font-noto"
-              />
-              {touched.email && errors.email && (
-                <Text style={{fontSize: 12, color: '#FF0D10'}}>
-                  {errors.email}
-                </Text>
-              )}
+            <View className="h-1/2">
+              <View className="items-center ">
+                <Link to="/">
+                <Image source={logo} className="w-28 h-28" />
+                </Link>
+              </View>
             </View>
+
+            <View className=" h-1/2 justify-center">
+              <View className="mx-7 justify-center">
+                <Text className="font-notobold text-white mb-2">Phone</Text>
+                <TextInput
+                  onChangeText={handleChange('phone')}
+                  onBlur={() => setFieldTouched('phone')}
+                  value={values.phone}
+                  className=" bg-white rounded h-8 px-1 py-0 font-noto"
+                />
+                {touched.phone && errors.phone && (
+                  <Text style={{fontSize: 12, color: '#FF0D10'}}>
+                    {errors.phone}
+                  </Text>
+                )}
+
+                <Text className="font-notobold text-white mb-2 mt-2">
+                  Email
+                </Text>
+                <TextInput
+                  onChangeText={handleChange('email')}
+                  onBlur={() => setFieldTouched('email')}
+                  value={values.email}
+                  className=" bg-white rounded h-8 px-1 py-0 font-noto"
+                />
+                {touched.email && errors.email && (
+                  <Text style={{fontSize: 12, color: '#FF0D10'}}>
+                    {errors.email}
+                  </Text>
+                )}
+              </View>
             </View>
           </View>
           <View className="h-[15%] mx-7">

@@ -70,7 +70,7 @@ const Activity = () => {
   return (
     <View className="flex-1">
       {/* month select */}
-      <View className="flex flex-row px-5">
+      <View className="flex flex-row px-5 mb-2">
         <View className="w-1/2 relative z-30">
           <Text className="font-notobold text-black">
             Period 
