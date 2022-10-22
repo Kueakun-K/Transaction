@@ -12,6 +12,7 @@ module.exports = {
         'red-onn': '#FD6565',
         'base' : '#F1EEE6',
         'yellowonn' : '#F6D8A9',
+        'red-ja' : '#E80000'
       },
       fontFamily: {
         noto : ['NotoSans-Regular'],
