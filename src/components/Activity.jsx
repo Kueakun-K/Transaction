@@ -3,6 +3,7 @@ import {View, Text, Pressable, ScrollView} from 'react-native';
 import {ChevronDownIcon, ChevronUpIcon} from 'react-native-heroicons/outline';
 import axios from 'axios';
 import DropDownPicker from 'react-native-dropdown-picker';
+import {Picker} from '@react-native-picker/picker';
 const Activity = ({navigation}) => {
   const month = [
     'January',
@@ -47,6 +48,8 @@ const Activity = ({navigation}) => {
     },
   ]);
 
+  const [selectedLanguage, setSelectedLanguage] = React.useState();
+
   const [transaction, setTransaction] = React.useState([]);
   let initdate = 0;
 
@@ -74,19 +77,35 @@ const Activity = ({navigation}) => {
             Period
             {/* {transaction.length} */}
           </Text>
-          <DropDownPicker
+          {/* <DropDownPicker
             open={open}
             value={value}
             items={items}
             setOpen={setOpen}
             setValue={setValue}
             setItems={setItems}
-          />
+          /> */}
+          <View className="border-b">
+            <Picker
+              selectedValue={selectedLanguage}
+              onValueChange={(itemValue, itemIndex) =>
+                setSelectedLanguage(itemValue)
+              }>
+              {items.map((item, index) => (
+                <Picker.Item
+                  style={{fontSize: 15}}
+                  key={index}
+                  label={item.label}
+                  value={item.value}
+                />
+              ))}
+            </Picker>
+          </View>
         </View>
         <View className="w-1/2 pl-4 mt-4 justify-end">
           <Pressable>
             <View className="flex rounded-xl bg-green-kem items-center justify-center py-[12px] shadow shadow-black">
-              <Text className=" font-notoMedium text-white ">
+              <Text className=" font-notoMedium text-white">
                 Account Summary
               </Text>
             </View>
