@@ -14,9 +14,18 @@ const Home = ({navigation}) => {
         onPress={() => navigation.navigate('Login')}
       />
       <Button
+        title="Go to Review"
+        onPress={() => navigation.navigate('Review')}
+      />
+      <Button
+        title="Go to Success"
+        onPress={() => navigation.navigate('Successful')}
+      />
+      <Button
         title="Go to Test"
         onPress={() => navigation.navigate('Test')}
       />
+
     </View>
   );
 };
