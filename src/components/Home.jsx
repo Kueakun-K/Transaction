@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, Button} from 'react-native';
 const Home = ({navigation}) => {
+  
   return (
     <View className="bg-red-500">
       <Text className="text-white">Hello Home</Text>
