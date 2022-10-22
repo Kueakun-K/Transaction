@@ -5,6 +5,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Home from './src/components/Home';
 import Transaction from './src/components/Transaction';
 import Login from './src/components/Login';
+import Transfer from './src/components/Transfer'
 
 // test
 import TestAct from './src/components/TestAct';
@@ -28,6 +29,7 @@ const App = () => {
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Transaction" component={Transaction} />
         <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Transfer" component={Transfer} />
         <Stack.Screen name="Test" component={Test} />
       </Stack.Navigator>
       {/* Stack Navigation */}

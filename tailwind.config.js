@@ -7,6 +7,7 @@ module.exports = {
         'green-kem': '#76978E',
         'green-sod' : '#387766',
         'green-oon' : '#8DD0BD',
+        'green-green' : '#61A592',
         'tao': '#E1D8D8',
         'red-onn': '#FD6565',
         'base' : '#F1EEE6',
