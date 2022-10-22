@@ -98,7 +98,7 @@ const Activity = ({navigation}) => {
       <View className="flex-1 ">
         <ScrollView>
           {transaction.map((tran, index) => (
-            <View>
+            <View key={index}>
               {(() => {
                 if (tran.date != initdate) {
                   initdate = tran.date;
