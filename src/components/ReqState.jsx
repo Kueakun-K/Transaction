@@ -40,7 +40,7 @@ const ReqState = () => {
         // isValid,
         handleSubmit,
       }) => (
-        <View className=" h-[60%] px-5">
+        <View className=" h-full px-5 bg-base">
           <View className="h-4/5">
             <View className=" mb-3 ">
               <Text className="font-notobold text-black">Select Month(s)</Text>

@@ -3,7 +3,7 @@ import {View, Text, Pressable, ScrollView} from 'react-native';
 import {ChevronDownIcon, ChevronUpIcon} from 'react-native-heroicons/outline';
 import axios from 'axios';
 import DropDownPicker from 'react-native-dropdown-picker';
-const Activity = ({navigation}) => {
+const TestAct = ({navigation}) => {
   const month = [
     'January',
     'February',
@@ -82,13 +82,13 @@ const Activity = ({navigation}) => {
           />
         </View>
         <View className="w-1/2 pl-4 mt-4 justify-end">
-          <Pressable>
+          {/* <Link to="#"> */}
             <View className="flex rounded-xl bg-green-kem items-center justify-center py-[12px] shadow shadow-black">
               <Text className=" font-notoMedium text-white ">
                 Account Summary
               </Text>
             </View>
-          </Pressable>
+          {/* </Link> */}
         </View>
       </View>
       {/* Transaction */}
@@ -96,9 +96,7 @@ const Activity = ({navigation}) => {
         <ScrollView>
           {/* วันที่ */}
           <View className="px-5 my-2">
-            <Text className="font-notobold text-black text-base">
-              16 OCT 22
-            </Text>
+            <Text className="font-notobold text-black text-base">16 OCT 22</Text>
           </View>
           {/* วันที่ */}
 
@@ -117,21 +115,13 @@ const Activity = ({navigation}) => {
                   ' mx-2 flex-row  mb-1 '
                 }>
                 <View className="w-1/2 ">
-                  <Text className="font-noto text-black text-base">
-                    {tran.user}
-                  </Text>
-                  <Text className="font-noto text-black text-sm">
-                    {index} PM
-                  </Text>
+                  <Text className="font-noto text-black text-base">{tran.user}</Text>
+                  <Text className="font-noto text-black text-sm">{index} PM</Text>
                 </View>
                 <View className="w-1/2 items-end ">
                   <Text className="font-noto text-red-600">- 70.00 Bath</Text>
                   <View>
-                    {tran.press ? (
-                      <ChevronUpIcon color="black" size={24} />
-                    ) : (
-                      <ChevronDownIcon color="black" size={24} />
-                    )}
+                  {tran.press ? <ChevronUpIcon color="black" size={24}/> : <ChevronDownIcon color="black" size={24}/>}
                   </View>
                 </View>
               </View>
@@ -149,6 +139,7 @@ const Activity = ({navigation}) => {
               </View>
             </Pressable>
           ))}
+
           {/* กรอบ Transaction */}
         </ScrollView>
       </View>
@@ -156,4 +147,4 @@ const Activity = ({navigation}) => {
     </View>
   );
 };
-export default Activity;
+export default TestAct;

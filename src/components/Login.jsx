@@ -7,7 +7,6 @@ import {
   Alert,
   TouchableOpacity,
 } from 'react-native';
-import {Link} from 'react-router-native';
 
 import {Formik} from 'formik';
 import * as yup from 'yup';
@@ -37,9 +36,7 @@ const Login = () => {
           <View className="bg-green-sod rounded-b-2xl h-[85%] shadow shadow-black">
             <View className="h-1/2">
               <View className="items-center ">
-                <Link to="/">
                 <Image source={logo} className="w-28 h-28" />
-                </Link>
               </View>
             </View>
 
