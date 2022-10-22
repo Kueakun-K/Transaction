@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, Image, Pressable} from 'react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {ChevronLeftIcon} from 'react-native-heroicons/outline';
+import {ChevronLeftIcon, ArrowPathIcon} from 'react-native-heroicons/outline';
 import axios from 'axios';
 import logo from '../assets/images/logo.png';
 
@@ -64,9 +64,12 @@ const Transaction = ({navigation}) => {
             <View className="w-1/2 items-end">
               <Text className="font-noto text-sm text-white">100.49</Text>
               <Text className="font-noto text-sm text-white">100.49</Text>
-              <Text className=" font-noto text-xs text-yellowonn">
-                Updated at 2.32 PM
-              </Text>
+              <View className="flex-row items-center">
+                <ArrowPathIcon color="#F6D8A9" size={13} />
+                <Text className="ml-1 font-noto text-xs text-yellowonn">
+                  Updated at 2.32 PM
+                </Text>
+              </View>
             </View>
           </View>
           {/* Money Data */}

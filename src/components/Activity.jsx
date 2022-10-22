@@ -48,6 +48,7 @@ const Activity = ({navigation}) => {
   ]);
 
   const [transaction, setTransaction] = React.useState([]);
+  let initdate = 0;
 
   React.useEffect(() => {
     fetchTransaction();
@@ -59,6 +60,7 @@ const Activity = ({navigation}) => {
         res.data.map(tran => ({
           id: tran.id,
           user: tran.username,
+          date: Number(tran.id),
           press: false,
         })),
       );
@@ -92,66 +94,75 @@ const Activity = ({navigation}) => {
         </View>
       </View>
       {/* Transaction */}
+
       <View className="flex-1 ">
         <ScrollView>
-          {/* วันที่ */}
-          <View className="px-5 my-2">
-            <Text className="font-notobold text-black text-base">
-              16 OCT 22
-            </Text>
-          </View>
-          {/* วันที่ */}
-
-          {/* กรอบ Transaction */}
           {transaction.map((tran, index) => (
-            <Pressable
-              key={index}
-              onPressOut={e => {
-                tran.press = !tran.press;
-                setTransaction([...transaction]);
-              }}
-              className="bg-tao/80 mb-2 mx-5 rounded shadow shadow-gray-600 ">
-              <View
-                className={
-                  (tran.press ? 'border-b border-gray-500' : '') +
-                  ' mx-2 flex-row  mb-1 '
-                }>
-                <View className="w-1/2 ">
-                  <Text className="font-noto text-black text-base">
-                    {tran.user}
-                  </Text>
-                  <Text className="font-noto text-black text-sm">
-                    {index} PM
-                  </Text>
-                </View>
-                <View className="w-1/2 items-end ">
-                  <Text className="font-noto text-red-600">- 70.00 Bath</Text>
-                  <View>
-                    {tran.press ? (
-                      <ChevronUpIcon color="black" size={24} />
-                    ) : (
-                      <ChevronDownIcon color="black" size={24} />
-                    )}
+            <View>
+              {(() => {
+                if (tran.date != initdate) {
+                  initdate = tran.date;
+                  return (
+                    <View className="px-5 my-2">
+                      <Text className="font-notobold text-black text-base">
+                        {tran.date}
+                      </Text>
+                    </View>
+                  );
+                }
+                return null;
+              })()}
+              {/* กรอบ Transaction */}
+              <Pressable
+                key={index}
+                onPressOut={e => {
+                  tran.press = !tran.press;
+                  setTransaction([...transaction]);
+                }}
+                className="bg-tao/80 mb-2 mx-5 rounded shadow shadow-gray-600 ">
+                <View
+                  className={
+                    (tran.press ? 'border-b border-gray-500' : '') +
+                    ' mx-2 flex-row  mb-1 '
+                  }>
+                  <View className="w-1/2 ">
+                    <Text className="font-noto text-black text-base">
+                      {tran.user}
+                    </Text>
+                    <Text className="font-noto text-black text-sm">
+                      {tran.date}
+                    </Text>
+                  </View>
+                  <View className="w-1/2 items-end ">
+                    <Text className="font-noto text-red-600">- 70.00 Bath</Text>
+                    <View>
+                      {tran.press ? (
+                        <ChevronUpIcon color="black" size={24} />
+                      ) : (
+                        <ChevronDownIcon color="black" size={24} />
+                      )}
+                    </View>
                   </View>
                 </View>
-              </View>
-              <View className={tran.press ? 'mx-3 flex-row mb-1' : 'hidden'}>
-                <View className="w-1/2">
-                  <Text className="font-noto text-xs">FourQU</Text>
-                  <Text className="font-noto text-xs">To Acc No. :</Text>
-                  <Text className="font-noto text-xs">To Acc Name. :</Text>
+                <View className={tran.press ? 'mx-3 flex-row mb-1' : 'hidden'}>
+                  <View className="w-1/2">
+                    <Text className="font-noto text-xs">FourQU</Text>
+                    <Text className="font-noto text-xs">To Acc No. :</Text>
+                    <Text className="font-noto text-xs">To Acc Name. :</Text>
+                  </View>
+                  <View className="w-1/2 items-end">
+                    <Text className="font-noto text-xs"></Text>
+                    <Text className="font-noto text-xs">xxx-x-x1301-x</Text>
+                    <Text className="font-noto text-xs">Watcharapol</Text>
+                  </View>
                 </View>
-                <View className="w-1/2 items-end">
-                  <Text className="font-noto text-xs"></Text>
-                  <Text className="font-noto text-xs">xxx-x-x1301-x</Text>
-                  <Text className="font-noto text-xs">Watcharapol</Text>
-                </View>
-              </View>
-            </Pressable>
+              </Pressable>
+            </View>
           ))}
           {/* กรอบ Transaction */}
         </ScrollView>
       </View>
+
       {/* Transaction */}
     </View>
   );
