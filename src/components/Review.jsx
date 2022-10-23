@@ -142,7 +142,9 @@ const Review = ({navigation}) => {
             <Text className="font-noto text-black">Confirm</Text>
           </View>
           <View className="rounded-full bg-green-oon ml-2">
-            <CheckIcon color="white" size={50} />
+            <Pressable onPress={() => navigation.navigate('Successful')}>
+              <CheckIcon color="white" size={50} />
+            </Pressable>
           </View>
         </View>
       </View>
