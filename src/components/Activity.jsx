@@ -45,7 +45,7 @@ const Activity = ({navigation}) => {
     },
   ]);
 
-  const [selectedLanguage, setSelectedLanguage] = React.useState();
+  const [selectedMonth, setSelectedMonth] = React.useState();
 
   const [transaction, setTransaction] = React.useState([]);
   let initdate = 0;
@@ -75,9 +75,9 @@ const Activity = ({navigation}) => {
           <View className="border-b">
             <Picker
               prompt="Period"
-              selectedValue={selectedLanguage}
+              selectedValue={selectedMonth}
               onValueChange={(itemValue, itemIndex) => {
-                setSelectedLanguage(itemValue);
+                setSelectedMonth(itemValue);
                 console.log(itemValue);
               }}>
               {items.map((item, index) => (

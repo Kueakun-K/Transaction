@@ -85,7 +85,7 @@ const Transaction = ({navigation}) => {
                 <Pressable
                   onPress={() => {
                     setActive(true);
-                    navigation.navigate('Activity');
+                    // navigation.navigate('Activity');
                   }}>
                   <View className=" h-7 items-center justify-start ">
                     <Text
@@ -102,7 +102,7 @@ const Transaction = ({navigation}) => {
                 <Pressable
                   onPress={() => {
                     setActive(false);
-                    navigation.navigate('ReqState');
+                    // navigation.navigate('ReqState');
                   }}>
                   <View className=" h-7 items-center justify-start">
                     <Text
@@ -123,14 +123,25 @@ const Transaction = ({navigation}) => {
       {/* Header */}
 
       {/* Child Component */}
-      <Tab.Navigator
+      {/* {((active) => {
+        if (active){
+          return <Activity/>
+        }
+        else {
+          return <ReqState/>
+        }
+      })} */}
+
+      {active ? <Activity/> : <ReqState/>}
+      
+      {/* <Tab.Navigator
         screenOptions={{
           headerShown: false,
         }}
         initialRouteName="Activity">
         <Tab.Screen name="Activity" component={Activity} />
         <Tab.Screen name="ReqState" component={ReqState} />
-      </Tab.Navigator>
+      </Tab.Navigator> */}
       {/* Child Component */}
     </View>
   );
