@@ -21,12 +21,12 @@ const Activity = ({navigation}) => {
 
   const create = new Date('2020-04-03T02:00:00Z');
   const now = new Date();
-  const test = new Date('2021-03-03T02:00:00Z');
+  // const test = new Date('2021-03-03T02:00:00Z');  //Use to test date
 
   const MonthShow = (d1, d2) => {
     var months;
     var list = [];
-    var tod = 0;  // if month < 0
+    var tod = 0; // if month < 0
     months = (d2.getFullYear() - d1.getFullYear()) * 12;
     months -= d1.getMonth();
     months += d2.getMonth();
@@ -78,11 +78,10 @@ const Activity = ({navigation}) => {
 
   React.useEffect(() => {
     fetchTransaction();
-    setmonthList(MonthShow(create, test));
+    setmonthList(MonthShow(create, now));
 
     console.log(selectedMonth);
   }, []);
-
 
   // fetchTransaction from backend
   const fetchTransaction = () => {
@@ -99,12 +98,11 @@ const Activity = ({navigation}) => {
   };
   return (
     <View className="flex-1 bg-base">
+      {/* Period + Account Summary */}
       <View className="flex flex-row px-5 mb-2">
         {/* Period Picker*/}
         <View className="w-1/2 relative z-30">
-          <Text className="font-notobold text-black">
-            Period
-          </Text>
+          <Text className="font-notobold text-black">Period</Text>
           <View className="border-b">
             <Picker
               prompt="Period"
@@ -138,13 +136,14 @@ const Activity = ({navigation}) => {
         </View>
         {/* Account Summary */}
       </View>
+      {/* Period + Account Summary */}
 
-      {/* Transaction */}
+      {/* Date + Transaction */}
       <View className="flex-1 ">
         <ScrollView>
           {transaction.map((tran, index) => (
             <View key={index}>
-              {/* วันที่ */}
+              {/* Date */}
               {(() => {
                 if (tran.date != initdate) {
                   initdate = tran.date;
@@ -157,9 +156,9 @@ const Activity = ({navigation}) => {
                   );
                 }
               })()}
-              {/* วันที่ */}
+              {/* Date */}
 
-              {/* กรอบ Transaction */}
+              {/* Transaction */}
               <Pressable
                 key={index}
                 onPressOut={e => {
@@ -206,10 +205,10 @@ const Activity = ({navigation}) => {
               </Pressable>
             </View>
           ))}
-          {/* กรอบ Transaction */}
+          {/* Transaction */}
         </ScrollView>
       </View>
-      {/* Transaction */}
+      {/* Date + Transaction */}
     </View>
   );
 };
