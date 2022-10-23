@@ -2,7 +2,6 @@ import React from 'react';
 import {View, Text, Pressable, ScrollView} from 'react-native';
 import {ChevronDownIcon, ChevronUpIcon} from 'react-native-heroicons/outline';
 import axios from 'axios';
-import DropDownPicker from 'react-native-dropdown-picker';
 import {Picker} from '@react-native-picker/picker';
 const Activity = ({navigation}) => {
   const month = [
@@ -22,8 +21,6 @@ const Activity = ({navigation}) => {
 
   const d = new Date();
   const year = d.getFullYear().toString().substr(-2);
-
-  const [value, setValue] = React.useState(month[d.getMonth()]);
   const [items, setItems] = React.useState([
     {label: month[d.getMonth()] + ' ' + year, value: month[d.getMonth()]},
     {
@@ -72,34 +69,19 @@ const Activity = ({navigation}) => {
   return (
     <View className="flex-1 bg-base">
       <View className="flex flex-row px-5 mb-2">
+        {/* Period Picker*/}
         <View className="w-1/2 relative z-30">
-          <Text className="font-notobold text-black">
-            Period
-            {/* {transaction.length} */}
-          </Text>
-          {/* <DropDownPicker
-            open={open}
-            value={value}
-            items={items}
-            setOpen={setOpen}
-            setValue={setValue}
-            setItems={setItems}
-          /> */}
+          <Text className="font-notobold text-black">Period</Text>
           <View className="border-b">
             <Picker
-            // dropdownIconColor="red"
-            prompt='Period'
-            
-            // dropdownIconRippleColor="red"
+              prompt="Period"
               selectedValue={selectedLanguage}
-              onValueChange={(itemValue, itemIndex) =>{
-                setSelectedLanguage(itemValue)
-                console.log(itemValue)
-              }
-              }>
+              onValueChange={(itemValue, itemIndex) => {
+                setSelectedLanguage(itemValue);
+                console.log(itemValue);
+              }}>
               {items.map((item, index) => (
                 <Picker.Item
-                  
                   style={{fontSize: 15}}
                   key={index}
                   label={item.label}
@@ -109,6 +91,9 @@ const Activity = ({navigation}) => {
             </Picker>
           </View>
         </View>
+        {/* Period Picker*/}
+
+        {/* Account Summary */}
         <View className="w-1/2 pl-4 mt-4 justify-end">
           <Pressable>
             <View className="flex rounded-xl bg-green-kem items-center justify-center py-[12px] shadow shadow-black">
@@ -118,26 +103,29 @@ const Activity = ({navigation}) => {
             </View>
           </Pressable>
         </View>
+        {/* Account Summary */}
       </View>
-      {/* Transaction */}
 
+      {/* Transaction */}
       <View className="flex-1 ">
         <ScrollView>
           {transaction.map((tran, index) => (
             <View key={index}>
+              {/* วันที่ */}
               {(() => {
                 if (tran.date != initdate) {
                   initdate = tran.date;
                   return (
-                    <View className="px-5 my-2">
+                    <View className="px-5 pb-2 pt-1">
                       <Text className="font-notobold text-black text-base">
                         {tran.date}
                       </Text>
                     </View>
                   );
                 }
-                return null;
               })()}
+              {/* วันที่ */}
+
               {/* กรอบ Transaction */}
               <Pressable
                 key={index}
@@ -188,7 +176,6 @@ const Activity = ({navigation}) => {
           {/* กรอบ Transaction */}
         </ScrollView>
       </View>
-
       {/* Transaction */}
     </View>
   );

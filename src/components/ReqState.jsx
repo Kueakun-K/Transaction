@@ -1,11 +1,9 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, Alert} from 'react-native';
+import {View, Text, TouchableOpacity, Alert, ScrollView} from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
 import {Formik} from 'formik';
 
 const ReqState = () => {
-  const [month, setMonth] = React.useState(false);
-  const [month2, setMonth2] = React.useState(false);
   const m = [
     'Jan',
     'Feb',
@@ -21,7 +19,6 @@ const ReqState = () => {
     'Dec',
   ];
   const thisMonth = m[new Date().getMonth()];
-
 
   return (
     <Formik
@@ -41,7 +38,8 @@ const ReqState = () => {
         handleSubmit,
       }) => (
         <View className=" h-full px-5 bg-base">
-          <View className="h-4/5">
+          {/* Select Month */}
+          <ScrollView className="h-4/5">
             <View className=" mb-3 ">
               <Text className="font-notobold text-black">Select Month(s)</Text>
             </View>
@@ -68,8 +66,10 @@ const ReqState = () => {
               <View className="w-1/4  flex-row items-center"></View>
               <View className="w-1/4  flex-row items-center"></View>
             </View>
-          </View>
+          </ScrollView>
+          {/* Select Month */}
 
+          {/* Submit Request */}
           <View className=" h-1/5 justify-center ">
             <TouchableOpacity
               onPressOut={handleSubmit}
@@ -79,6 +79,7 @@ const ReqState = () => {
               </Text>
             </TouchableOpacity>
           </View>
+          {/* Submit Request */}
         </View>
       )}
     </Formik>
