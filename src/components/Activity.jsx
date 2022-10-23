@@ -22,7 +22,7 @@ const Activity = ({navigation}) => {
 
   const d = new Date();
   const year = d.getFullYear().toString().substr(-2);
-  const [open, setOpen] = React.useState(false);
+
   const [value, setValue] = React.useState(month[d.getMonth()]);
   const [items, setItems] = React.useState([
     {label: month[d.getMonth()] + ' ' + year, value: month[d.getMonth()]},
@@ -87,12 +87,19 @@ const Activity = ({navigation}) => {
           /> */}
           <View className="border-b">
             <Picker
+            // dropdownIconColor="red"
+            prompt='Period'
+            
+            // dropdownIconRippleColor="red"
               selectedValue={selectedLanguage}
-              onValueChange={(itemValue, itemIndex) =>
+              onValueChange={(itemValue, itemIndex) =>{
                 setSelectedLanguage(itemValue)
+                console.log(itemValue)
+              }
               }>
               {items.map((item, index) => (
                 <Picker.Item
+                  
                   style={{fontSize: 15}}
                   key={index}
                   label={item.label}
