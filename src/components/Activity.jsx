@@ -19,41 +19,72 @@ const Activity = ({navigation}) => {
     'December',
   ];
 
-  const d = new Date();
-  const year = d.getFullYear().toString().substr(-2);
-  const [items, setItems] = React.useState([
-    {label: month[d.getMonth()] + ' ' + year, value: month[d.getMonth()]},
-    {
-      label: month[d.getMonth() - 1] + ' ' + year,
-      value: month[d.getMonth() - 1],
-    },
-    {
-      label: month[d.getMonth() - 2] + ' ' + year,
-      value: month[d.getMonth() - 2],
-    },
-    {
-      label: month[d.getMonth() - 3] + ' ' + year,
-      value: month[d.getMonth() - 3],
-    },
-    {
-      label: month[d.getMonth() - 4] + ' ' + year,
-      value: month[d.getMonth() - 4],
-    },
-    {
-      label: month[d.getMonth() - 5] + ' ' + year,
-      value: month[d.getMonth() - 5],
-    },
-  ]);
+  const create = new Date('2020-04-03T02:00:00Z');
+  const now = new Date();
+  const test = new Date('2021-03-03T02:00:00Z');
 
-  const [selectedMonth, setSelectedMonth] = React.useState();
+  const MonthShow = (d1, d2) => {
+    var months;
+    var list = [];
+    var tod = 0;  // if month < 0
+    months = (d2.getFullYear() - d1.getFullYear()) * 12;
+    months -= d1.getMonth();
+    months += d2.getMonth();
+    months += 1;
+    months = months > 6 ? 6 : months;
 
+    for (let i = 0; i < months; i++) {
+      if (d2.getMonth() - i >= 0) {
+        list.push({
+          label:
+            month[d2.getMonth() - i] +
+            ' ' +
+            d2.getFullYear().toString().substr(-2),
+          value:
+            d2.getFullYear() +
+            '-' +
+            (d2.getMonth() - i + 1).toString().padStart(2, '0'),
+        });
+      } else {
+        list.push({
+          label:
+            month[11 - tod] +
+            ' ' +
+            (d2.getFullYear() - 1).toString().substr(-2),
+          value:
+            d2.getFullYear() - 1 + '-' + (12 - tod).toString().padStart(2, '0'),
+        });
+        tod++;
+      }
+    }
+    // console.log('Show :', months, 'Month');
+    // console.log(list);
+    return list;
+  };
+
+  // Monthlist in Period (Max 6)
+  const [monthList, setmonthList] = React.useState([]);
+
+  // SelectMonth use to fetchTransaction
+  const [selectedMonth, setSelectedMonth] = React.useState(
+    now.getFullYear() + '-' + (now.getMonth() + 1).toString().padStart(2, '0'),
+  );
+
+  // Transaction from fetchTransaction
   const [transaction, setTransaction] = React.useState([]);
+
+  // InitDate use to compare date in transaction
   let initdate = 0;
 
   React.useEffect(() => {
     fetchTransaction();
+    setmonthList(MonthShow(create, test));
+
+    console.log(selectedMonth);
   }, []);
 
+
+  // fetchTransaction from backend
   const fetchTransaction = () => {
     axios.get('https://jsonplaceholder.typicode.com/users').then(res => {
       setTransaction(
@@ -71,7 +102,9 @@ const Activity = ({navigation}) => {
       <View className="flex flex-row px-5 mb-2">
         {/* Period Picker*/}
         <View className="w-1/2 relative z-30">
-          <Text className="font-notobold text-black">Period</Text>
+          <Text className="font-notobold text-black">
+            Period
+          </Text>
           <View className="border-b">
             <Picker
               prompt="Period"
@@ -80,12 +113,12 @@ const Activity = ({navigation}) => {
                 setSelectedMonth(itemValue);
                 console.log(itemValue);
               }}>
-              {items.map((item, index) => (
+              {monthList.map((month, index) => (
                 <Picker.Item
                   style={{fontSize: 15}}
                   key={index}
-                  label={item.label}
-                  value={item.value}
+                  label={month.label}
+                  value={month.value}
                 />
               ))}
             </Picker>
