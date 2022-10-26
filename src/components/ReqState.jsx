@@ -3,6 +3,8 @@ import {View, Text, TouchableOpacity, Alert, ScrollView} from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
 import {Formik} from 'formik';
 
+import Check from './Check';
+
 const ReqState = () => {
   const m = [
     'Jan',
@@ -10,7 +12,7 @@ const ReqState = () => {
     'Mar',
     'Apr',
     'May',
-    'Jun',
+    'Jun', 
     'Jul',
     'Aug',
     'Sep',
@@ -57,14 +59,15 @@ const ReqState = () => {
             </View>
             <View>
               <View className=" flex-row mb-3 ">
-                <View className="w-1/4 flex-row  items-center">
+                {/* <View className="w-1/4 flex-row  items-center">
                   <CheckBox
                     disabled={false}
                     value={values?.Jan}
                     onValueChange={newValue => setFieldValue('Jan', newValue)}
                   />
                   <Text className=" font-noto text-sm text-black">Jan</Text>
-                </View>
+                </View> */}
+                <Check value={values?.Jan} change={newValue => setFieldValue('Jan', newValue)} month={m[0]}/>
                 <View className="w-1/4 flex-row items-center">
                   <CheckBox
                     disabled={false}
@@ -90,8 +93,9 @@ const ReqState = () => {
                   <Text className=" font-noto text-sm text-black">Apr</Text>
                 </View>
               </View>
-              <View className=" flex-row mb-3 ">
-                <View className="w-1/4 flex-row  items-center">
+
+              <View className=" flex-row mb-3 justify-between">
+                <View className=" flex-row  items-center">
                   <CheckBox
                     disabled={false}
                     value={values?.May}
@@ -99,7 +103,7 @@ const ReqState = () => {
                   />
                   <Text className=" font-noto text-sm text-black">May</Text>
                 </View>
-                <View className="w-1/4 flex-row items-center">
+                <View className=" flex-row items-center">
                   <CheckBox
                     disabled={false}
                     value={values?.Jun}
@@ -107,7 +111,7 @@ const ReqState = () => {
                   />
                   <Text className=" font-noto text-sm text-black">Jun</Text>
                 </View>
-                <View className="w-1/4  flex-row items-center">
+                <View className="  flex-row items-center">
                   <CheckBox
                     disabled={false}
                     value={values?.Jul}
@@ -116,7 +120,7 @@ const ReqState = () => {
                   <Text className=" font-noto text-sm text-black">Jul</Text>
                 </View>
 
-                <View className="w-1/4  flex-row items-center">
+                <View className="  flex-row items-center">
                   <CheckBox
                     disabled={false}
                     value={values?.Aug}
@@ -125,6 +129,7 @@ const ReqState = () => {
                   <Text className=" font-noto text-sm text-black">Aug</Text>
                 </View>
               </View>
+
               <View className=" flex-row mb-3 ">
                 <View className="w-1/4 flex-row  items-center">
                   <CheckBox
