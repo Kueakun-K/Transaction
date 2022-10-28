@@ -77,7 +77,6 @@ const ReqState = () => {
   React.useEffect(() => {
     setMonthNow(showMonthNow(create, now));
     setMonthPass(showMonthPass(create, now));
-    console.log('SET');
   }, []);
 
   const numberRequest = () => {
@@ -96,8 +95,8 @@ const ReqState = () => {
     return num;
   };
 
-  const handleChange = (label, month, name) => {
-    if (numberRequest() < 6) {
+  const handleChange = (label, newvalue, month, name) => {
+    if (numberRequest() < 6 || newvalue == false) {
       let temp = month.map(month => {
         if (label === month.label) {
           return {...month, value: !month.value};
@@ -131,28 +130,30 @@ const ReqState = () => {
   return (
     <View className="h-[55%] px-5 bg-base">
       {/* Select Month */}
-      <ScrollView className="">
-        <View className=" mb-3 ">
-          <Text className="font-notobold text-black">Select Month(s)</Text>
-        </View>
 
+      <View className="mb-2">
+        <Text className="font-notobold text-black">Select Month(s)</Text>
+      </View>
+      <ScrollView className="">
         {/* Year Pass */}
         {(() => {
           if (monthPass.length > 0) {
             return (
-              <View className="w-full flex-row flex-wrap">
-                <View className="w-full">
-                  <Text>{now.getFullYear() - 1}</Text>
+              <View className="w-full flex-row flex-wrap mb-2">
+                <View className="w-full  mb-1">
+                  <Text className="font-notoMedium text-black">
+                    {now.getFullYear() - 1}
+                  </Text>
                 </View>
                 {monthPass.map((month, index) => (
                   <View key={index} className="w-1/4 flex-row  items-center">
                     <CheckBox
                       value={month.value}
-                      onValueChange={() => {
-                        handleChange(month.label, monthPass, 'monthPass');
+                      onValueChange={(newvalue) => {
+                        handleChange(month.label, newvalue, monthPass, 'monthPass');
                       }}
                     />
-                    <Text>{month.label}</Text>
+                    <Text className="font-noto text-black">{month.label}</Text>
                   </View>
                 ))}
               </View>
@@ -162,19 +163,21 @@ const ReqState = () => {
         {/* Year Pass */}
 
         {/* Year Now */}
-        <View className="w-full flex-row flex-wrap">
-          <View className="w-full">
-            <Text>{now.getFullYear()}</Text>
+        <View className="w-full flex-row flex-wrap  mb-2">
+          <View className="w-full  mb-1">
+            <Text className="font-notoMedium text-black">
+              {now.getFullYear()}
+            </Text>
           </View>
           {monthNow.map((month, index) => (
             <View key={index} className="w-1/4 flex-row  items-center">
               <CheckBox
                 value={month.value}
-                onValueChange={() => {
-                  handleChange(month.label, monthNow, 'monthNow');
+                onValueChange={(newvalue) => {
+                  handleChange(month.label, newvalue, monthNow, 'monthNow');
                 }}
               />
-              <Text>{month.label}</Text>
+              <Text className="font-noto text-black">{month.label}</Text>
             </View>
           ))}
         </View>
