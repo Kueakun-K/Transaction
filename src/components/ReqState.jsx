@@ -44,7 +44,7 @@ const ReqState = () => {
             '-' +
             (d2.getMonth() - i + 1).toString().padStart(2, '0'),
         });
-      } 
+      }
     }
     return list;
   };
@@ -61,11 +61,10 @@ const ReqState = () => {
 
     for (let i = 0; i < months; i++) {
       if (d2.getMonth() - i >= 0) {
-        
       } else {
         list.splice(0, 0, {
           label: m[11 - tod],
-          value: true,
+          value: false,
           params:
             d2.getFullYear() - 1 + '-' + (12 - tod).toString().padStart(2, '0'),
         });
@@ -78,42 +77,26 @@ const ReqState = () => {
   const [monthNow, setMonthNow] = React.useState([]);
   const [monthPass, setMonthPass] = React.useState([]);
 
-  let initYear = 0;
-  let num = 0;
-
   React.useEffect(() => {
     setMonthNow(showMonthNow(create, now));
     setMonthPass(showMonthPass(create, now));
-    console.log("SET")
+    console.log('SET');
   }, []);
 
-  // let numYearNow = 0;
-  // let numYearPast = 0;
-  // for (let i = 0; i < monthNow.length; i++) {
-  //   if (monthNow[i].params.substr(0, 4) == now.getFullYear()) {
-  //     numYearNow += 1;
-  //   } else {
-  //     numYearPast += 1;
-  //   }
-  // }
-  // console.log('Number : ', numYearNow, numYearPast);
-
-  // let rowYearNow = Math.round(numYearNow / 4);
-  // let rowYearPast = Math.round(numYearPast / 4);
-  // console.log('Row : ', rowYearNow, rowYearPast);
-  // const submit = values => {
-  //   Alert.alert(JSON.stringify(values));
-  // };
-
-  const handleChange = (label) => {
-    let temp = monthPass.map((month) => {
-      if (label === month.label){
-        return { ...month, value: !month.value};
+  const handleChange = (label, month, name) => {
+    let temp = month.map(month => {
+      if (label === month.label) {
+        return {...month, value: !month.value};
       }
       return month;
     });
-    setMonthPass(temp)
-  }
+    if (name == "monthPass"){
+      setMonthPass(temp);
+    }
+    else if (name == "monthNow"){
+      setMonthNow(temp);
+    }
+  };
 
   return (
     <View className="h-[55%] px-5 bg-base">
@@ -121,88 +104,52 @@ const ReqState = () => {
       <ScrollView className="">
         <View className=" mb-3 ">
           <Text className="font-notobold text-black">
-            Select Month(s){monthNow.length} {monthPass.length}
+            Select Month(s)
           </Text>
         </View>
-        {/* <View className="flex">
-        {monthList.map((list, index) => (
-          <View key={index}>
-            {(() => {
-              if (list.params.substr(0, 4) != initYear) {
-                initYear = list.params.substr(0, 4);
-                return (
-                  <View className=" ">
-                    <Text className="font-notoMedium text-black">
-                      {list.params.substr(0, 4)}
-                    </Text>
-                  </View>
-                );
-              }
-            })()}
-            {(() => {
-              if (list.params == '2021-11') {
-                return (
-                  <View className=" bg-red-500 w-1/4 ">
-                    <Text>{monthList[index].label}</Text>
-                  </View>
-                );
-              } else {
-                return (
-                  <View className="flex-row bg-sky-500 w-1/4 items-center">
-                    <Text>{monthList[index].label}</Text>
-                  </View>
-                );
-              }
-            })()}
-          </View>
-        ))}
-        </View> */}
-        <View className="bg-red-300 w-full flex-row flex-wrap">
-          {monthPass.map((month, index) => (
-              <TouchableOpacity key={index} onPress={() => {onchecked(month.lable)}} className="bg-sky-300 w-1/4 flex-row">
-                <CheckBox value={monthPass[index].value} onValueChange={()=>{handleChange(month.label)}}/>
-                <Text>{month.label}</Text>
-              </TouchableOpacity>
-            
-          ))}
-        </View>
 
-        <View className="bg-red-500 w-full flex-row flex-wrap">
-          {monthNow.map((month, index) => (
-              <View key={index} className="bg-sky-500 w-1/4 flex-row">
-                <Text>{month.label}</Text>
+        {(() => {
+          if (monthPass.length > 0) {
+            return (
+              <View className="w-full flex-row flex-wrap">
+                <View className="w-full">
+                  <Text>{now.getFullYear() - 1}</Text>
+                </View>
+                {monthPass.map((month, index) => (
+                  <View
+                    key={index}
+                    className="w-1/4 flex-row  items-center">
+                    <CheckBox
+                      value={month.value}
+                      onValueChange={() => {
+                        handleChange(month.label, monthPass, "monthPass");
+                      }}
+                    />
+                    <Text>{month.label}</Text>
+                  </View>
+                ))}
               </View>
-            
+            );
+          }
+        })()}
+        <View className="w-full flex-row flex-wrap">
+          <View className="w-full">
+            <Text>{now.getFullYear()}</Text>
+          </View>
+          {monthNow.map((month, index) => (
+            <View
+              key={index}
+              className="w-1/4 flex-row  items-center">
+              <CheckBox
+                value={month.value}
+                onValueChange={() => {
+                  handleChange(month.label, monthNow, "monthNow");
+                }}
+              />
+              <Text>{month.label}</Text>
+            </View>
           ))}
         </View>
-
-        {/* <View className="bg-red-500">
-          <View className="flex-row mb-3 justify-center">
-            <Check
-                  value={values?.Jan}
-                  change={newValue => setFieldValue('Jan', newValue)}
-                  month={m[0]}
-                />
-                <Check
-                  value={values?.Feb}
-                  change={newValue => setFieldValue('Feb', newValue)}
-                  month={m[1]}
-                />
-                <Check
-                  value={values?.Mar}
-                  change={newValue => setFieldValue('Mar', newValue)}
-                  month={m[2]}
-                />
-                <Check
-                  value={values?.Apr}
-                  change={newValue => setFieldValue('Apr', newValue)}
-                  month={m[3]}
-                />
-          </View>
-          <View className="flex-row mb-3 justify-between"></View>
-
-          <View className=" flex-row mb-3 "></View>
-        </View> */}
       </ScrollView>
       {/* Select Month */}
 
