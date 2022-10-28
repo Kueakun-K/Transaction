@@ -150,7 +150,6 @@ const Test = () => {
 
     for (let i = 0; i< months; i++){
       if (d2.getMonth() - i >= 0){
-        // console.log(m[d2.getMonth() - i])
         listyearnow.splice(0,0,m[d2.getMonth() - i])
       }
       else{
@@ -160,17 +159,23 @@ const Test = () => {
     }
     console.log(listyearnow)
     console.log(listyearpast)
-    // return listyearnow + listyearpast
+    let r2021 = Math.round(listyearpast.length / 4 )
+    let r2022 = Math.round(listyearnow.length / 4 )
+    console.log("row 2021",r2021,"row 2022",r2022)
+    
   }
+  const te = "2021-02"
   React.useEffect(()=>{
     MonthShow(create, test)
-  })
+    console.log(te.substr(0,4))
+  },[])
   return (
-    <View className="bg-red-500 flex-row w-full">
+    <View className="bg-red-500 flex-row flex-wrap w-full">
       {/* <Check value={init?.Nov} month={month}/> */}
       <View className="w-1/4 bg-sky-500"><Text>t1</Text></View>
       <View className="w-1/4 bg-sky-500"><Text>t1</Text></View>
       <View className="w-1/4 bg-sky-500"><Text>t1</Text></View>
+      {/* <View><Tesxt>{"\n"}</Tesxt></View> */}
       <View className="w-1/4 bg-sky-500"><Text>t1</Text></View>
    
       <View className="w-1/4 bg-sky-500"><Text>t1</Text></View>
