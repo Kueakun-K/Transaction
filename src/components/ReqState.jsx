@@ -1,8 +1,6 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, Alert, ScrollView} from 'react-native';
+import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
-
-import Check from './Check';
 
 const ReqState = () => {
   const m = [
@@ -27,7 +25,6 @@ const ReqState = () => {
   const showMonthNow = (d1, d2) => {
     var months;
     var list = [];
-    var tod = 0; // if month < 0
     months = (d2.getFullYear() - d1.getFullYear()) * 12;
     months -= d1.getMonth();
     months += d2.getMonth();
@@ -83,19 +80,52 @@ const ReqState = () => {
     console.log('SET');
   }, []);
 
-  const handleChange = (label, month, name) => {
-    let temp = month.map(month => {
-      if (label === month.label) {
-        return {...month, value: !month.value};
+  const numberRequest = () => {
+    let num = 0;
+    monthPass.map(month => {
+      if (month.value === true) {
+        num += 1;
       }
-      return month;
     });
-    if (name == "monthPass"){
-      setMonthPass(temp);
+
+    monthNow.map(month => {
+      if (month.value === true) {
+        num += 1;
+      }
+    });
+    return num;
+  };
+
+  const handleChange = (label, month, name) => {
+    if (numberRequest() < 6) {
+      let temp = month.map(month => {
+        if (label === month.label) {
+          return {...month, value: !month.value};
+        }
+        return month;
+      });
+      if (name == 'monthPass') {
+        setMonthPass(temp);
+      } else if (name == 'monthNow') {
+        setMonthNow(temp);
+      }
     }
-    else if (name == "monthNow"){
-      setMonthNow(temp);
-    }
+  };
+
+  const submitRequest = () => {
+    let temp = '';
+    monthPass.map(month => {
+      if (month.value === true) {
+        temp != '' ? (temp += ',' + month.params) : (temp += month.params);
+      }
+    });
+
+    monthNow.map(month => {
+      if (month.value === true) {
+        temp != '' ? (temp += ',' + month.params) : (temp += month.params);
+      }
+    });
+    console.log(temp);
   };
 
   return (
@@ -103,11 +133,10 @@ const ReqState = () => {
       {/* Select Month */}
       <ScrollView className="">
         <View className=" mb-3 ">
-          <Text className="font-notobold text-black">
-            Select Month(s)
-          </Text>
+          <Text className="font-notobold text-black">Select Month(s)</Text>
         </View>
 
+        {/* Year Pass */}
         {(() => {
           if (monthPass.length > 0) {
             return (
@@ -116,13 +145,11 @@ const ReqState = () => {
                   <Text>{now.getFullYear() - 1}</Text>
                 </View>
                 {monthPass.map((month, index) => (
-                  <View
-                    key={index}
-                    className="w-1/4 flex-row  items-center">
+                  <View key={index} className="w-1/4 flex-row  items-center">
                     <CheckBox
                       value={month.value}
                       onValueChange={() => {
-                        handleChange(month.label, monthPass, "monthPass");
+                        handleChange(month.label, monthPass, 'monthPass');
                       }}
                     />
                     <Text>{month.label}</Text>
@@ -132,31 +159,33 @@ const ReqState = () => {
             );
           }
         })()}
+        {/* Year Pass */}
+
+        {/* Year Now */}
         <View className="w-full flex-row flex-wrap">
           <View className="w-full">
             <Text>{now.getFullYear()}</Text>
           </View>
           {monthNow.map((month, index) => (
-            <View
-              key={index}
-              className="w-1/4 flex-row  items-center">
+            <View key={index} className="w-1/4 flex-row  items-center">
               <CheckBox
                 value={month.value}
                 onValueChange={() => {
-                  handleChange(month.label, monthNow, "monthNow");
+                  handleChange(month.label, monthNow, 'monthNow');
                 }}
               />
               <Text>{month.label}</Text>
             </View>
           ))}
         </View>
+        {/* Year Now */}
       </ScrollView>
       {/* Select Month */}
 
       {/* Submit Request */}
       <View className="justify-center">
         <TouchableOpacity
-          // onPressOut={handleSubmit}
+          onPressOut={submitRequest}
           className="bg-green-kem rounded-lg items-center py-4 shadow shadow-black">
           <Text className="font-notoMedium text-xl text-white">
             Submit Request
