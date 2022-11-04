@@ -3,7 +3,7 @@ import {View, Text, Pressable, ScrollView} from 'react-native';
 import {ChevronDownIcon, ChevronUpIcon} from 'react-native-heroicons/outline';
 import axios from 'axios';
 import {Picker} from '@react-native-picker/picker';
-const Activity = ({navigation}) => {
+const Activity = () => {
   const month = [
     'January',
     'February',
@@ -19,7 +19,7 @@ const Activity = ({navigation}) => {
     'December',
   ];
 
-  const create = new Date('2020-04-03T02:00:00Z');
+  const create = new Date('2021-08-03T02:00:00Z');
   const now = new Date();
   // const test = new Date('2021-03-03T02:00:00Z');  //Use to test date
 
@@ -57,8 +57,6 @@ const Activity = ({navigation}) => {
         tod++;
       }
     }
-    // console.log('Show :', months, 'Month');
-    // console.log(list);
     return list;
   };
 
@@ -77,14 +75,13 @@ const Activity = ({navigation}) => {
   let initdate = 0;
 
   React.useEffect(() => {
-    fetchTransaction();
     setmonthList(MonthShow(create, now));
-
-    console.log(selectedMonth);
-  }, []);
+    fetchTransaction();
+  }, [selectedMonth]);
 
   // fetchTransaction from backend
   const fetchTransaction = () => {
+    console.log(`https://test/get/${selectedMonth}`);
     axios.get('https://jsonplaceholder.typicode.com/users').then(res => {
       setTransaction(
         res.data.map(tran => ({
@@ -109,7 +106,6 @@ const Activity = ({navigation}) => {
               selectedValue={selectedMonth}
               onValueChange={(itemValue, itemIndex) => {
                 setSelectedMonth(itemValue);
-                console.log(itemValue);
               }}>
               {monthList.map((month, index) => (
                 <Picker.Item
