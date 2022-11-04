@@ -7,12 +7,11 @@ module.exports = {
         'green-kem': '#76978E',
         'green-sod' : '#387766',
         'green-oon' : '#8DD0BD',
-
+        'pin-button' : "#FBFFF5",
+        'gray-pin': "#BEBEBE",
         'green-green' : '#61A592',
-
         'green-bg-logo' : '#61A592',
         'green-cf' : '#8DD0BD',
-
         'tao': '#E1D8D8',
         'red-onn': '#FD6565',
         'base' : '#F1EEE6',

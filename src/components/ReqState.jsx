@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
+import axios from 'axios';
 
 const ReqState = () => {
   const m = [
@@ -20,7 +21,7 @@ const ReqState = () => {
 
   const create = new Date('2021-01-03T02:00:00Z');
   const now = new Date();
-  const test = new Date('2021-08-03T02:00:00Z'); //Use to test date
+  // const test = new Date('2021-08-03T02:00:00Z'); //Use to test date
 
   const showMonthNow = (d1, d2) => {
     var months;
@@ -112,19 +113,20 @@ const ReqState = () => {
   };
 
   const submitRequest = () => {
-    let temp = '';
+    let selectedMonth = '';
     monthPass.map(month => {
       if (month.value === true) {
-        temp != '' ? (temp += ',' + month.params) : (temp += month.params);
+        selectedMonth != '' ? (selectedMonth += ',' + month.params) : (selectedMonth += month.params);
       }
     });
 
     monthNow.map(month => {
       if (month.value === true) {
-        temp != '' ? (temp += ',' + month.params) : (temp += month.params);
+        selectedMonth != '' ? (selectedMonth += ',' + month.params) : (selectedMonth += month.params);
       }
     });
-    console.log(temp);
+    //selectedMonth
+    console.log(selectedMonth);
   };
 
   return (
