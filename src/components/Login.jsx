@@ -6,21 +6,36 @@ import {
   Image,
   Alert,
   TouchableOpacity,
+  TouchableHighlight,
 } from 'react-native';
-
+import axios from 'axios';
 import {Formik} from 'formik';
 import * as yup from 'yup';
+
 import logo from '../assets/images/logo.png';
-const Login = () => {
+
+const Login = ({navigation}) => {
+
+  const HandleSignin = (values) => {
+    console.log(values)
+    navigation.navigate('PinCheck')
+
+    // axios.post('https://test/post', {
+    //   phone: values.phone,
+    //   email: values.email,
+    // }).then( res => {
+    //   res ? navigation.navigate('PinCheck') : Alert.alert("Sign In Fail")
+    // })
+  }
   return (
     <Formik
       initialValues={{
         phone: '',
         email: '',
       }}
-      onSubmit={values => Alert.alert(JSON.stringify(values))}
+      onSubmit={values => HandleSignin(values)}
       validationSchema={yup.object().shape({
-        phone: yup.number().positive().integer().required(),
+        phone: yup.number().integer().required(),
         email: yup.string().email().required(),
       })}>
       {({
@@ -44,6 +59,7 @@ const Login = () => {
               <View className="mx-7 justify-center">
                 <Text className="font-notobold text-white mb-2">Phone</Text>
                 <TextInput
+                  keyboardType="number-pad"
                   onChangeText={handleChange('phone')}
                   onBlur={() => setFieldTouched('phone')}
                   value={values.phone}
@@ -59,6 +75,7 @@ const Login = () => {
                   Email
                 </Text>
                 <TextInput
+                  keyboardType="email-address"
                   onChangeText={handleChange('email')}
                   onBlur={() => setFieldTouched('email')}
                   value={values.email}
@@ -73,12 +90,12 @@ const Login = () => {
             </View>
           </View>
           <View className="h-[15%] mx-7">
-            <TouchableOpacity
+            <TouchableHighlight
               onPressOut={handleSubmit}
               disabled={!isValid}
               className="bg-green-oon rounded-lg items-center justify-center h-14 my-auto shadow shadow-black">
               <Text className="font-noto text-xl text-white py-2">SIGN IN</Text>
-            </TouchableOpacity>
+            </TouchableHighlight>
           </View>
         </View>
       )}
