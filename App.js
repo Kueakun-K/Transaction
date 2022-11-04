@@ -11,11 +11,9 @@ import Review from './src/components/Review';
 
 
 // test
-import TestAct from './src/components/TestAct';
 import Activity from './src/components/Activity';
 import ReqState from './src/components/ReqState';
 import Test from './src/components/Test';
-import Data from './src/components/Data';
 import Sucessful from './src/components/Sucessful';
 // test
 

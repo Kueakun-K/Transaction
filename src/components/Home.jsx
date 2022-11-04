@@ -13,10 +13,6 @@ const Home = ({navigation}) => {
         onPress={() => navigation.navigate('Login')}
       />
       <Button
-        title="Go to PinCheck"
-        onPress={() => navigation.navigate('PinCheck')}
-      />
-      <Button
         title="Go to Transfer"
         onPress={() => navigation.navigate('Transfer')}
       />

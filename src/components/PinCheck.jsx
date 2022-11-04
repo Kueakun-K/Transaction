@@ -1,19 +1,6 @@
-import {
-  View,
-  Text,
-  ScrollView,
-  TextInput,
-  Button,
-  Pressable,
-  Image,
-  Alert,
-  StyleSheet,
-} from 'react-native';
+import {View, Text, Image} from 'react-native';
 
 import React from 'react';
-// import {NavigationContainer} from '@react-navigation/native';
-// import {createNativeStackNavigator} from '@react-navigation/native-stack';
-// import PinView from 'react-native-pin-view';
 import OTP_list from './OTP_list';
 import {useState, useEffect} from 'react';
 import {TouchableHighlight} from 'react-native';
@@ -108,16 +95,14 @@ const PinCheck = ({navigation}) => {
           pin6: false,
         });
       }
-      console.log(typeof pin,pin.length);
+      console.log(typeof pin, pin.length);
     })();
     if (pin.length === 6) {
-      if (pin == '111111' ){
-        console.log("vaid PIN!")
+      if (pin == '111111') {
+        console.log('vaid PIN!');
         // navigation.navigate("RegisterSub5")
-
       }
       //check
-
     }
   }, [pin]);
 
@@ -128,19 +113,17 @@ const PinCheck = ({navigation}) => {
         className=" object-center w-full rounded-b-xl  bg-green-sod container">
         <View className=" w-full h-full  justify-between items-center ">
           <Image source={logo} className="w-32 h-32" />
-          <Text
-            
-            className="text-3xl text-yellowonn font-notobold">
+          <Text className="text-3xl text-yellowonn font-notobold">
             Please Enter OTP PIN
           </Text>
 
           <View className=" w-2/3 h-10 flex-1 flex-row justify-between items-center">
-            <HiddlePin isSuccess={pin.length >= 1 ? false:true} />
-            <HiddlePin isSuccess={pin.length >= 2 ? false:true} />
-            <HiddlePin isSuccess={pin.length >= 3 ? false:true} />
-            <HiddlePin isSuccess={pin.length >= 4 ? false:true} />
-            <HiddlePin isSuccess={pin.length >= 5 ? false:true} />
-            <HiddlePin isSuccess={pin.length >= 6 ? false:true} />
+            <HiddlePin isSuccess={pin.length >= 1 ? false : true} />
+            <HiddlePin isSuccess={pin.length >= 2 ? false : true} />
+            <HiddlePin isSuccess={pin.length >= 3 ? false : true} />
+            <HiddlePin isSuccess={pin.length >= 4 ? false : true} />
+            <HiddlePin isSuccess={pin.length >= 5 ? false : true} />
+            <HiddlePin isSuccess={pin.length >= 6 ? false : true} />
           </View>
         </View>
       </View>
@@ -170,9 +153,7 @@ const PinCheck = ({navigation}) => {
           <View className="flex  h-20 w-20 justify-center items-center flex-row rounded-full"></View>
           <OTP_list num={'0'} onPress={onPress} />
 
-          <TouchableHighlight
-            className="rounded-full"
-            onPress={delClick}>
+          <TouchableHighlight className="rounded-full" onPress={delClick}>
             <View className="flex h-20 w-20 justify-center items-center flex-row rounded-full">
               <Image source={back} className="w-16 h-16 items-center" />
             </View>
