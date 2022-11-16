@@ -98,6 +98,10 @@ const ConfirmPin = ({navigation, route}) => {
     if (pin.length === 6) {
       if (pin == route.params.pin) {
         console.log('Login Success');
+        navigation.navigate('Home');
+      } else {
+        console.log("Pin Not Match")
+        setPin('');
       }
     }
   }, [pin]);
