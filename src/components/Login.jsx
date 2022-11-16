@@ -18,13 +18,13 @@ const Login = ({navigation}) => {
 
   const HandleSignin = (values) => {
     console.log(values)
-    navigation.navigate('PinCheck')
+    navigation.navigate('NewPin')
 
     // axios.post('https://test/post', {
     //   phone: values.phone,
     //   email: values.email,
     // }).then( res => {
-    //   res ? navigation.navigate('PinCheck') : Alert.alert("Sign In Fail")
+    //   res ? navigation.navigate('NewPin') : Alert.alert("Sign In Fail")
     // })
   }
   return (

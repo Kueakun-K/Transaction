@@ -8,7 +8,7 @@ import logo from '../assets/images/logo.png';
 import back from '../assets/images/back.png';
 import HiddlePin from './HiddlePin';
 
-const PinCheck = ({navigation}) => {
+const ConfirmPin = ({navigation, route}) => {
   const [checkState, setCheckState] = useState({
     pin1: false,
     pin2: false,
@@ -21,7 +21,6 @@ const PinCheck = ({navigation}) => {
   const onPress = value => {
     if (/^([0-9]){0,5}$/.test(pin) && /^([0-9])$/.test(value)) {
       setPin(val => val + value);
-      console.log(pin);
     }
   };
   const delClick = () => {
@@ -95,14 +94,11 @@ const PinCheck = ({navigation}) => {
           pin6: false,
         });
       }
-      console.log(typeof pin, pin.length);
     })();
     if (pin.length === 6) {
-      if (pin == '111111') {
-        console.log('vaid PIN!');
-        // navigation.navigate("RegisterSub5")
+      if (pin == route.params.pin) {
+        console.log('Login Success');
       }
-      //check
     }
   }, [pin]);
 
@@ -114,7 +110,7 @@ const PinCheck = ({navigation}) => {
         <View className=" w-full h-full  justify-between items-center ">
           <Image source={logo} className="w-32 h-32" />
           <Text className="text-3xl text-yellowonn font-notobold">
-            Please Enter OTP PIN
+            Confirm OTP PIN
           </Text>
 
           <View className=" w-2/3 h-10 flex-1 flex-row justify-between items-center">
@@ -164,4 +160,4 @@ const PinCheck = ({navigation}) => {
   );
 };
 
-export default PinCheck;
+export default ConfirmPin;
