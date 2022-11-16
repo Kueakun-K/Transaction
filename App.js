@@ -5,7 +5,8 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Home from './src/components/Home';
 import Transaction from './src/components/Transaction';
 import Login from './src/components/Login';
-import PinCheck from './src/components/PinCheck';
+import NewPin from './src/components/NewPin';
+import ConfirmPin from './src/components/ConfirmPin';
 import Transfer from './src/components/Transfer'
 import Review from './src/components/Review';
 
@@ -31,7 +32,8 @@ const App = () => {
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Transaction" component={Transaction} />
         <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="PinCheck" component={PinCheck} />
+        <Stack.Screen name="NewPin" component={NewPin} />
+        <Stack.Screen name="ConfirmPin" component={ConfirmPin} />
         <Stack.Screen name="Transfer" component={Transfer} />
         <Stack.Screen name="Review" component={Review}/>
         <Stack.Screen name="Successful" component={Sucessful}/>
