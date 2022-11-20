@@ -1,7 +1,6 @@
 import React from 'react';
 import {View, Text, Button} from 'react-native';
 const Home = ({navigation}) => {
-  
   return (
     <View className="bg-red-500">
       <Text className="text-white">Hello Home</Text>
@@ -24,6 +23,7 @@ const Home = ({navigation}) => {
       <Button
         title="Go to Success"
         onPress={() => navigation.navigate('Successful')}
+
       />
       <Button
         title="Go to Notification"
@@ -37,8 +37,9 @@ const Home = ({navigation}) => {
       <Button
         title="Go to Test"
         onPress={() => navigation.navigate('Test')}
-      />
 
+      />
+      <Button title="Go to Test" onPress={() => navigation.navigate('Test')} />
     </View>
   );
 };
