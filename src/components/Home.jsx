@@ -29,17 +29,14 @@ const Home = ({navigation}) => {
         title="Go to Notification"
         onPress={() => navigation.navigate('Notification')}
       />
-      <Button
-        title="Go to NotiTransaction"
-        onPress={() => navigation.navigate('NotiTransaction')}
-      />
 
       <Button
         title="Go to Test"
         onPress={() => navigation.navigate('Test')}
-
       />
-      <Button title="Go to Test" onPress={() => navigation.navigate('Test')} />
+
+
+    
     </View>
   );
 };
