@@ -7,9 +7,9 @@ import Transaction from './src/components/Transaction';
 import Login from './src/components/Login';
 
 import Transfer from './src/components/Transfer'
-
+import NotiTransaction from './src/components/NotiTransaction';
 import Review from './src/components/Review';
-
+import Noti from './src/components/Noti';
 
 // test
 import TestAct from './src/components/TestAct';
@@ -39,6 +39,8 @@ const App = () => {
 
         <Stack.Screen name="Review" component={Review}/>
         <Stack.Screen name="Successful" component={Sucessful}/>
+        <Stack.Screen name="Notification" component={Noti}/>
+        <Stack.Screen name="NotiTransaction" component={NotiTransaction}/>
 
         <Stack.Screen name="Test" component={Test} />
       </Stack.Navigator>
