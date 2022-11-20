@@ -12,6 +12,10 @@ module.exports = {
         'green-green' : '#61A592',
         'green-bg-logo' : '#61A592',
         'green-cf' : '#8DD0BD',
+
+        'green-trans' : '#CDE1D5',
+
+
         'tao': '#E1D8D8',
         'red-onn': '#FD6565',
         'base' : '#F1EEE6',

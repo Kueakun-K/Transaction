@@ -8,8 +8,10 @@ import Login from './src/components/Login';
 import NewPin from './src/components/NewPin';
 import ConfirmPin from './src/components/ConfirmPin';
 import Transfer from './src/components/Transfer'
-import Review from './src/components/Review';
 
+import NotiTransaction from './src/components/NotiTransaction';
+import Review from './src/components/Review';
+import Noti from './src/components/Noti';
 
 // test
 import Activity from './src/components/Activity';
@@ -37,6 +39,10 @@ const App = () => {
         <Stack.Screen name="Transfer" component={Transfer} />
         <Stack.Screen name="Review" component={Review}/>
         <Stack.Screen name="Successful" component={Sucessful}/>
+
+        <Stack.Screen name="Notification" component={Noti}/>
+        <Stack.Screen name="NotiTransaction" component={NotiTransaction}/>
+
         <Stack.Screen name="Test" component={Test} />
       </Stack.Navigator>
       {/* Stack Navigation */}
