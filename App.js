@@ -40,9 +40,8 @@ const App = () => {
         <Stack.Screen name="Review" component={Review}/>
         <Stack.Screen name="Successful" component={Sucessful}/>
 
+        
         <Stack.Screen name="Notification" component={Noti}/>
-        <Stack.Screen name="NotiTransaction" component={NotiTransaction}/>
-
         <Stack.Screen name="Test" component={Test} />
       </Stack.Navigator>
       {/* Stack Navigation */}
